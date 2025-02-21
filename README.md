@@ -20,7 +20,62 @@ It can be run offline, it's just as safe as tradtional wallet generation methods
 
 ### Setup
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/R-1-6/BrainWallet.git
+   git clone https://github.com/yourusername/BrainWallet.git
    cd BrainWallet
+2. Install dependencies:
+   pip install ecdsa cryptography base58
+
+## Usage
+1. Run the script:
    python brainwallet.py
+2. Enter your keyphrases when prompted:
+   Enter your keyphrases to generate Bitcoin and Solana wallet keys.
+   Enter keyphrase 1: my secret phrase one
+   Enter keyphrase 2: another secret phrase two
+3. View the generated wallet information:
+   Generated Wallet Information:
+   ==============================
+   Bitcoin Wallet:
+   Private Key (hex): a1b2c3d4e5f67890...
+   Address: 1ABCxyz...
+   Solana Wallet:
+   Private Key Seed (hex, 32 bytes): 1234567890abcdef...
+   Address: 5tR0nGpUbLiC...
+   Phantom Wallet Compatible Private Key (64 bytes):
+   Base58: 2a3b4c5d6e7f8g9h...
+   Byte Array: [18, 52, 86, 120, ...]
+4. To regenerate, run again with the same keyphrases.
+
+### Importing into Wallets
+- Bitcoin: Import the private key (hex) into wallets like Electrum (convert to WIF format if needed).
+- Solana:
+  - Use the 32-byte seed hex for programmatic access.
+  - Use the Phantom-compatible base58 or byte array to import into Phantom Wallet:
+    - Go to "Add / Connect Wallet" -> "Import Private Key".
+    - Paste the base58 string or byte array as prompted.
+
+## How It Works
+1. Master Seed: Combines `keyphrase1 + " " + keyphrase2` and derives a 64-byte seed via PBKDF2, using `keyphrase1 + keyphrase2` as the salt.
+2. Bitcoin Seed: Derived via HMAC-SHA256 with `keyphrase1` as the key, producing a 32-byte private key.
+3. Solana Seed: Derived via HMAC-SHA256 with `keyphrase2` as the key, producing a 32-byte seed for ed25519.
+4. Outputs: Generates wallet addresses and private keys, with Solana keys in multiple formats.
+
+## Security Considerations
+- Keyphrase Strength: Security depends on the entropy of your keyphrases. Use long, unique phrases (e.g., 20+ random words) for 128+ bits of entropy.
+- No Randomness: Unlike BIP39, this is fully deterministic with no added entropy—great for memory, but ensure keyphrases are unguessable.
+- Private Key Safety: Never share or expose private keys. Run on a trusted, offline system to avoid leaks.
+- Custom Derivation: Uses keyphrases as salt and HMAC keys for uniqueness, deviating from standards but secure if inputs are strong.
+
+## Limitations
+- Bitcoin: Generates legacy (P2PKH) addresses only. No SegWit or Taproot support yet.
+- Solana: Single keypair, no derivation paths (unlike BIP44).
+- Not BIP39: Doesn’t follow standard mnemonic protocols—designed for custom, memory-based use.
+
+## Contributing
+Feel free to fork, submit PRs, or open issues for improvements (e.g., SegWit support, additional wallet formats).
+
+## Disclaimer
+This is a proof-of-concept tool. Use at your own risk, especially with real funds. Always test with small amounts first and secure your keyphrases.
+
+---
+Created with ❤️ by R-1-6
