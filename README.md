@@ -4,6 +4,8 @@ BrainWallet is a Python script that generates private keys and addresses for Bit
 
 It can be run offline, it's just as safe as tradtional wallet generation methods as long as your rememberable keyphrases are secure (lengthy) enough.
 
+**- Rust Version (Windows .exe) also added as a back up, generates exactly the same outputs as the Python version. The Cargo.toml file and the main.rs source is there, in releases you will find pre-compiled version also but with something like this you probably want to compile it yourself for safety reasons**
+
 ## Features
 - **Bitcoin Wallet**: Generates a private key (secp256k1) and legacy P2PKH address.
 - **Solana Wallet**: Generates a private key (ed25519) and address, with dual outputs:
