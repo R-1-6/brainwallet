@@ -20,7 +20,7 @@ It can be run offline, it's just as safe as tradtional wallet generation methods
 
 ### Setup
 1. Clone the repository:
-   git clone https://github.com/yourusername/BrainWallet.git
+   git clone https://github.com/R-1-6/BrainWallet.git
    cd BrainWallet
 2. Install dependencies:
    pip install ecdsa cryptography base58
