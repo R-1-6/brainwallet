@@ -17,6 +17,10 @@ It can be run offline, it's just as safe as tradtional wallet generation methods
 ### Prerequisites
 - Python 3.6+
 - Required libraries: `ecdsa`, `cryptography`, `base58`
+- base58==2.1.1
+- ecdsa==0.19.0
+- cryptography==44.0.1
+- ^ Versions used and confirmed working at time of upload
 
 ### Setup
 1. Clone the repository:
