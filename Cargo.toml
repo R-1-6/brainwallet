@@ -1,0 +1,16 @@
+[package]
+name = "brainwallet"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base58 = "0.2"                   # For base58 encoding
+console = "0.15"                 # For terminal input/output
+digest = "0.10"                  # Trait for cryptographic hash functions
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }  # For Ed25519 key generation
+hex = "0.4"                      # For hex encoding
+hmac = "0.12"                    # For HMAC-SHA256
+pbkdf2 = "0.12"                  # For PBKDF2 key derivation
+ripemd = "0.1"                   # For RIPEMD-160 hashing
+secp256k1 = { version = "0.29", features = ["rand-std"] }  # For SECP256k1 key generation
+sha2 = "0.10"                    # For SHA-256 and SHA-512 hashing
